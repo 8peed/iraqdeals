@@ -36,7 +36,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           {user ? (
             <>
-              <span className="text-sm text-textmid hidden sm:inline">{user.email}</span>
+              <Link href="/profile" className="text-sm text-textmid hidden sm:inline hover:text-green-600">حسابي</Link>
               <button onClick={handleLogout} className="border border-borderStrong rounded-xl px-4 py-2 text-sm font-bold hover:border-green-600 hover:text-green-600">
                 خروج
               </button>
