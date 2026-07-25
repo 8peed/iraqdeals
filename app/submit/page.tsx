@@ -20,6 +20,7 @@ export default function SubmitPage() {
   const [storeName, setStoreName] = useState("");
   const [city, setCity] = useState("");
   const [imageUrl, setImageUrl] = useState("");
+  const [productUrl, setProductUrl] = useState("");
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -50,6 +51,7 @@ export default function SubmitPage() {
         store_name: storeName,
         city,
         image_url: imageUrl || null,
+        product_url: productUrl || null,
       })
       .select()
       .single();
@@ -94,6 +96,8 @@ export default function SubmitPage() {
         <input placeholder="المدينة" value={city} onChange={(e) => setCity(e.target.value)}
           className="w-full border border-borderStrong rounded-xl px-4 py-3 text-sm outline-none focus:border-green-600" />
         <input placeholder="رابط صورة (اختياري)" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)}
+          className="w-full border border-borderStrong rounded-xl px-4 py-3 text-sm outline-none focus:border-green-600" />
+        <input placeholder="رابط المنتج / صفحة العرض الأصلية (اختياري)" value={productUrl} onChange={(e) => setProductUrl(e.target.value)}
           className="w-full border border-borderStrong rounded-xl px-4 py-3 text-sm outline-none focus:border-green-600" />
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button type="submit" disabled={loading}
