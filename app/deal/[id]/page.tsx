@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabaseClient";
 import { notFound } from "next/navigation";
 import VoteButtons from "@/components/VoteButtons";
+import OwnerActions from "@/components/OwnerActions";
 
 export const revalidate = 0;
 
@@ -36,7 +37,19 @@ export default async function DealPage({ params }: { params: { id: string } }) {
             ) : null}
           </div>
 
+          {deal.product_url && (
+            
+              href={deal.product_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-teal-100 text-teal-600 font-bold rounded-xl px-4 py-2 text-sm mb-6"
+            >
+              🔗 شوف المنتج بموقع المتجر
+            </a>
+          )}
+
           <VoteButtons dealId={deal.id} initialVotes={deal.votes_count} />
+          <OwnerActions dealId={deal.id} dealUserId={deal.user_id} />
         </div>
       </div>
     </main>
